@@ -42,16 +42,12 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
             ArrayList<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("generic_user"));
-            
-            // final ObjectNode userNode = this.mapper.readValue(decoded.getClaim("user").asString(), ObjectNode.class);
-            // final User user = this.mapper.convertValue(userNode, UserDto.class);
-
             final String username = decoded.getClaim("user").asString();
             
             //-----------
 
             //NOTE: Questa azione per quanto inefficente al momento rimarrà in quanto l'autenticazione è a scopo dimostrativo
-            //In un ambiente reale è necessario uno studio più profondo dello state e/o implementare un sistema di caching rapido
+            //In un ambiente reale è necessario estendere i dati nel token e/o implementare un sistema di caching rapido
             this.userRepository.findByUsername(username).ifPresent(user -> {
                 UserDto userData = new UserDto(
                     user.getId(), 

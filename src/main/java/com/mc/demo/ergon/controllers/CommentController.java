@@ -2,7 +2,6 @@ package com.mc.demo.ergon.controllers;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,7 +20,6 @@ import com.mc.demo.ergon.dtos.UserDto;
 public class CommentController {
     private CommentService commentService;
 
-    @Autowired
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }

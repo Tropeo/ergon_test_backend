@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.BeanInitializationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +20,6 @@ public class JwtProvider {
     public static String audience;
     public static int expireSeconds;
 
-    @Autowired
     public JwtProvider(Environment env) {
         JwtProvider.secret = env.getProperty("security.secret");
         JwtProvider.issuer = env.getProperty("security.issuer");
