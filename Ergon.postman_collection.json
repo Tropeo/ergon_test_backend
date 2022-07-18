@@ -6,19 +6,26 @@
 	},
 	"item": [
 		{
-			"name": "Example Workflow",
+			"name": "Login",
 			"item": [
 				{
 					"name": "Login",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYl9hcGkiLCJpc3MiOiJodHRwczovL3d3dy5lcmdvbnJlc2VhcmNoLml0LyIsImV4cCI6MTY1ODIzMzg0NiwiaWF0IjoxNjU4MTQ3NDQ2LCJ1c2VyIjoiYWRtaW4ifQ.iSRtrn8mvyFvvW5qPzaqRgVdASaSbyMfDYIZ21zqEQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -26,23 +33,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/token?username=admin&password=123",
+							"raw": "localhost:8080/token",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"token"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "admin"
-								},
-								{
-									"key": "password",
-									"value": "123"
-								}
 							]
 						}
 					},
@@ -233,14 +230,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/activity/1/user/2",
+							"raw": "localhost:8080/activity/3/user/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"activity",
-								"1",
+								"3",
 								"user",
 								"2"
 							]
@@ -264,7 +261,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/activity?username=&status=inprogress",
+							"raw": "localhost:8080/activity?username=&status=backlog",
 							"host": [
 								"localhost"
 							],
@@ -279,7 +276,7 @@
 								},
 								{
 									"key": "status",
-									"value": "inprogress"
+									"value": "backlog"
 								}
 							]
 						}
@@ -311,16 +308,15 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/activity/1/user/2?effort=22",
+							"raw": "localhost:8080/activity/3/user?effort=22",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"activity",
-								"1",
-								"user",
-								"2"
+								"3",
+								"user"
 							],
 							"query": [
 								{
@@ -379,7 +375,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"activityId\": 3,\r\n    \"content\": \"Example comment part 2\"\r\n}",
+							"raw": "{\r\n    \"activityId\": 3,\r\n    \"content\": \"Example comment part 4\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -730,7 +726,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/activity/1/detail",
+							"raw": "localhost:8080/activity/1/detail?username=",
 							"host": [
 								"localhost"
 							],
@@ -739,6 +735,12 @@
 								"activity",
 								"1",
 								"detail"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -752,6 +754,16 @@
 				{
 					"name": "Get Activity Stuses",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYl9hcGkiLCJpc3MiOiJodHRwczovL3d3dy5lcmdvbnJlc2VhcmNoLml0LyIsImV4cCI6MTY1Nzg0NTM1NywiaWF0IjoxNjU3NzU4OTU3LCJ1c2VyIjoiYWRtaW4ifQ.WsCl6Y3JWqk5ZfW3h--kcBjismd28PJl-cfveEP1aNg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -776,6 +788,16 @@
 				{
 					"name": "Get Comment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYl9hcGkiLCJpc3MiOiJodHRwczovL3d3dy5lcmdvbnJlc2VhcmNoLml0LyIsImV4cCI6MTY1ODIzMzg0NiwiaWF0IjoxNjU4MTQ3NDQ2LCJ1c2VyIjoiYWRtaW4ifQ.iSRtrn8mvyFvvW5qPzaqRgVdASaSbyMfDYIZ21zqEQo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -894,7 +916,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6Imh0dHBzOi8vd3d3LmVyZ29ucmVzZWFyY2guaXQvIiwiZXhwIjoxNjU3NzU1OTg4LCJpYXQiOjE2NTc2Njk1ODgsInVzZXIiOiJ7XCJpZFwiOjIsXCJ1c2VybmFtZVwiOlwiYWRtaW5cIixcImZpcnN0TmFtZVwiOlwiQ2ljY2lvXCIsXCJsYXN0TmFtZVwiOlwiUGFzdGljY2lvXCIsXCJjcmVhdGlvbkRhdGVcIjoxNjU3NjYzMjAwMDAwfSJ9.B4Z0RCWBxhHH-j6BtMZLozTeAeEXu60DRhoLZf9VTE4",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZCI6IndlYl9hcGkiLCJpc3MiOiJodHRwczovL3d3dy5lcmdvbnJlc2VhcmNoLml0LyIsImV4cCI6MTY1Nzg0NTM1NywiaWF0IjoxNjU3NzU4OTU3LCJ1c2VyIjoiYWRtaW4ifQ.WsCl6Y3JWqk5ZfW3h--kcBjismd28PJl-cfveEP1aNg",
 									"type": "string"
 								}
 							]
@@ -902,14 +924,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/activity/1/comment",
+							"raw": "localhost:8080/activity/3/comment",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"activity",
-								"1",
+								"3",
 								"comment"
 							]
 						}
@@ -1075,15 +1097,12 @@
 			"item": [
 				{
 					"name": "token",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1091,23 +1110,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/token?username=admin&password=123",
+							"raw": "localhost:8080/token",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"token"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "admin"
-								},
-								{
-									"key": "password",
-									"value": "123"
-								}
 							]
 						}
 					},
@@ -1141,6 +1150,12 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "Auth",
+			"value": "J"
 		}
 	]
 }
