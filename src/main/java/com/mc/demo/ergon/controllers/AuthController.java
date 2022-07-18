@@ -1,12 +1,11 @@
 
 package com.mc.demo.ergon.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mc.demo.ergon.dtos.AuthDto;
 import com.mc.demo.ergon.dtos.UserDto;
 import com.mc.demo.ergon.services.UserService;
 import com.mc.demo.ergon.services.security.AuthenticationService;
@@ -22,9 +21,9 @@ public class AuthController {
         this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/token")
-    public String token(@RequestParam("username") String username, @RequestParam("password") String password) {
-        return this.authenticationService.login(username, password);
+    @PostMapping("/token")
+    public String token(@RequestBody() AuthDto data) {
+        return this.authenticationService.login(data.getUsername(), data.getPassword());
     }
 
     @PostMapping("/register")
