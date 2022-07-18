@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.mc.demo.ergon.models.Activity;
 import com.mc.demo.ergon.models.ActivityStatus;
@@ -36,6 +37,9 @@ public class PopulateDbTest {
     @Autowired
     UserActivityRepository userActivityRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Test
 	public void contextLoads() {
         if(userRepository.findByUsername("admin").isPresent()){
@@ -57,13 +61,13 @@ public class PopulateDbTest {
 
         //users
         User user1 = userRepository.save(
-            new User("admin", "123", "Prova", "Provetti", Date.valueOf(LocalDate.of(2021, 12, 22)))
+            new User("admin", passwordEncoder.encode("123"), "Prova", "Provetti", Date.valueOf(LocalDate.of(2021, 12, 22)))
         );
         User user2 = userRepository.save(
-            new User("user1", "456", "Laura", "Biagiotti", Date.valueOf(LocalDate.of(2022, 1, 15)))
+            new User("user1", passwordEncoder.encode("456"), "Laura", "Biagiotti", Date.valueOf(LocalDate.of(2022, 1, 15)))
         );
         User user3 = userRepository.save(
-            new User("user1", "456", "Laura", "Biagiotti", Date.valueOf(LocalDate.of(2022, 5, 21)))
+            new User("user1", passwordEncoder.encode("456"), "Laura", "Biagiotti", Date.valueOf(LocalDate.of(2022, 5, 21)))
         );
 
         //Activity
